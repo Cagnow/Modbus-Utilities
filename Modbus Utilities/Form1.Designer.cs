@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             TextBoxIP = new TextBox();
             btConnect = new Button();
             label1 = new Label();
@@ -46,9 +47,19 @@
             label3 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            ModbusExceptionTextBox = new TextBox();
+            label5 = new Label();
             tabPage2 = new TabPage();
+            MaxClientTextBox = new TextBox();
+            TimeoutTextBox = new TextBox();
+            StopServer = new Button();
+            StartServ = new Button();
+            IPtextBoxServ = new TextBox();
+            StatusServer = new Label();
+            label4 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
             SuspendLayout();
             // 
             // TextBoxIP
@@ -214,6 +225,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(ModbusExceptionTextBox);
             tabPage1.Controls.Add(btConnect);
             tabPage1.Controls.Add(ReadModeComboBox);
             tabPage1.Controls.Add(NoRegisterTextBox);
@@ -223,6 +235,7 @@
             tabPage1.Controls.Add(btHexadecimal);
             tabPage1.Controls.Add(btDisconnect);
             tabPage1.Controls.Add(btDecimal);
+            tabPage1.Controls.Add(label5);
             tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(label3);
             tabPage1.Controls.Add(Status);
@@ -235,8 +248,35 @@
             tabPage1.Text = "Client Mode";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // ModbusExceptionTextBox
+            // 
+            ModbusExceptionTextBox.Location = new Point(927, 466);
+            ModbusExceptionTextBox.Name = "ModbusExceptionTextBox";
+            ModbusExceptionTextBox.ReadOnly = true;
+            ModbusExceptionTextBox.Size = new Size(100, 32);
+            ModbusExceptionTextBox.TabIndex = 11;
+            ModbusExceptionTextBox.TextChanged += ModbusExceptionTextBox_TextChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(763, 470);
+            label5.Name = "label5";
+            label5.Size = new Size(158, 24);
+            label5.TabIndex = 2;
+            label5.Text = "Exception code : ";
+            label5.Click += label5_Click;
+            // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(MaxClientTextBox);
+            tabPage2.Controls.Add(TimeoutTextBox);
+            tabPage2.Controls.Add(StopServer);
+            tabPage2.Controls.Add(StartServ);
+            tabPage2.Controls.Add(IPtextBoxServ);
+            tabPage2.Controls.Add(StatusServer);
+            tabPage2.Controls.Add(label4);
             tabPage2.Location = new Point(4, 34);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -245,12 +285,81 @@
             tabPage2.Text = "Server Mode";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // MaxClientTextBox
+            // 
+            MaxClientTextBox.Location = new Point(46, 330);
+            MaxClientTextBox.Name = "MaxClientTextBox";
+            MaxClientTextBox.PlaceholderText = "Max Clients";
+            MaxClientTextBox.Size = new Size(123, 32);
+            MaxClientTextBox.TabIndex = 7;
+            MaxClientTextBox.TextChanged += MaxClientTextBox_TextChanged;
+            // 
+            // TimeoutTextBox
+            // 
+            TimeoutTextBox.Location = new Point(46, 368);
+            TimeoutTextBox.Name = "TimeoutTextBox";
+            TimeoutTextBox.PlaceholderText = "Timeout (ms)";
+            TimeoutTextBox.Size = new Size(121, 32);
+            TimeoutTextBox.TabIndex = 7;
+            // 
+            // StopServer
+            // 
+            StopServer.Location = new Point(175, 453);
+            StopServer.Name = "StopServer";
+            StopServer.Size = new Size(102, 37);
+            StopServer.TabIndex = 6;
+            StopServer.Text = "Stop";
+            StopServer.UseVisualStyleBackColor = true;
+            StopServer.Click += StopServer_Click;
+            // 
+            // StartServ
+            // 
+            StartServ.Location = new Point(44, 453);
+            StartServ.Name = "StartServ";
+            StartServ.Size = new Size(102, 37);
+            StartServ.TabIndex = 6;
+            StartServ.Text = "Start";
+            StartServ.UseVisualStyleBackColor = true;
+            StartServ.Click += StartServ_Click;
+            // 
+            // IPtextBoxServ
+            // 
+            IPtextBoxServ.Location = new Point(46, 406);
+            IPtextBoxServ.Name = "IPtextBoxServ";
+            IPtextBoxServ.PlaceholderText = "IP";
+            IPtextBoxServ.Size = new Size(121, 32);
+            IPtextBoxServ.TabIndex = 5;
+            IPtextBoxServ.TextChanged += textBox1_TextChanged;
+            IPtextBoxServ.KeyPress += textBox1_KeyPress;
+            // 
+            // StatusServer
+            // 
+            StatusServer.AutoSize = true;
+            StatusServer.Location = new Point(83, 23);
+            StatusServer.Name = "StatusServer";
+            StatusServer.Size = new Size(159, 25);
+            StatusServer.TabIndex = 4;
+            StatusServer.Text = "Server listening ...";
+            StatusServer.Click += StatusServer_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(7, 24);
+            label4.Name = "label4";
+            label4.Size = new Size(70, 24);
+            label4.TabIndex = 3;
+            label4.Text = "Status :";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             ClientSize = new Size(1067, 588);
             Controls.Add(tabControl1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "ModbusUtilities";
             Load += label;
@@ -258,6 +367,8 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -282,5 +393,14 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
+        private Label StatusServer;
+        private Label label4;
+        private Button StopServer;
+        private Button StartServ;
+        private TextBox MaxClientTextBox;
+        private TextBox TimeoutTextBox;
+        public TextBox IPtextBoxServ;
+        public TextBox ModbusExceptionTextBox;
+        private Label label5;
     }
 }
