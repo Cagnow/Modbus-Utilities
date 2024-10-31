@@ -29,8 +29,6 @@ namespace Modbus_Utilities
             StateServer = false;
             byte[] buffer = new byte[256]; // Exemple d'initialisation avec 256 bytes
             IPtextBoxServ.Text = GetDefaultIPv4();
-
-
         }
         private void IpTextBox(object sender, EventArgs e)
         {
@@ -47,12 +45,10 @@ namespace Modbus_Utilities
             {
                 MessageBox.Show("Double check connection params (Is host up ?)");
             }
-
         }
 
         private void label(object sender, EventArgs e)
         {
-
         }
 
 
@@ -64,11 +60,9 @@ namespace Modbus_Utilities
             {
                 if (StateServer == true)
                 {
-
                     StatusServer.Text = $"Server listening ... {numClient} clients connected";
                     StatusServer.ForeColor = Color.Green;
                     // btConnect.Enabled = false;
-
                 }
                 else
                 {
@@ -106,7 +100,6 @@ namespace Modbus_Utilities
             Span<byte> data;
             if (!client.IsConnected)
             {
-
             }
             else
             {
@@ -118,7 +111,6 @@ namespace Modbus_Utilities
                     }
                     catch (Exception ex)
                     {
-
                     }
                 }
                 if (ReadModeComboBox.SelectedIndex == 1)
@@ -129,7 +121,6 @@ namespace Modbus_Utilities
                     }
                     catch (Exception ex)
                     {
-
                     }
                 }
                 if (ReadModeComboBox.SelectedIndex == 2)
@@ -140,7 +131,6 @@ namespace Modbus_Utilities
                     }
                     catch (Exception ex)
                     {
-
                     }
                 }
                 if (ReadModeComboBox.SelectedIndex == 3)
@@ -151,10 +141,8 @@ namespace Modbus_Utilities
                     }
                     catch (Exception ex)
                     {
-
                     }
                 }
-
             }
         }
 
@@ -173,22 +161,18 @@ namespace Modbus_Utilities
 
         public void NoRegisterTextBox_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         public void StartAddressTextBox_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void Form1_Validated(object sender, EventArgs e)
         {
-
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-
         }
 
         private void StartAddressTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -210,12 +194,10 @@ namespace Modbus_Utilities
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void StatusServer_Click(object sender, EventArgs e)
         {
-
         }
 
         public void StartServ_Click(object sender, EventArgs e)
@@ -245,17 +227,14 @@ namespace Modbus_Utilities
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-
         }
 
         private void MaxClientTextBox_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-
         }
         public string GetDefaultIPv4()
         {
@@ -278,7 +257,6 @@ namespace Modbus_Utilities
 
         private void ModbusExceptionTextBox_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
